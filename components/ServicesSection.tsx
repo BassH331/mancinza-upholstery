@@ -7,12 +7,12 @@ export default function ServicesSection() {
       description: "Durable, stylish fabrics & leathers",
       image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=400&h=300"
     },
-    {
-      title: "Car Seat Repairs", 
+      {
+      title: "Car Seat Repairs",
       description: "Restore your car's interior to like-new",
-      image: "https://images.pexels.com/photos/8961057/pexels-photo-8961057.jpeg?auto=compress&cs=tinysrgb&h=300&w=400"
+      image: "https://images.pexels.com/photos/244818/pexels-photo-244818.jpeg"
     },
-    {
+  {
       title: "Sofa Restoration",
       description: "Fix sagging cushions, fabrics & frames", 
       image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&h=300"

@@ -14,38 +14,38 @@ export default function GallerySection() {
 
   const furnitureImages: ImageItem[] = [
     {
-      src: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=500&h=400",
+      src: "/components/furniture_img/furniture1.jpg",
       alt: "Elegant dark sofa"
     },
     {
-      src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&h=400", 
+      src: "/components/furniture_img/furniture2.jpg", 
       alt: "Brown dining set"
     },
     {
-      src: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=500&h=400",
+      src: "/components/furniture_img/furniture3.jpg",
       alt: "Cozy armchair"
     },
     {
-      src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&h=400",
+      src: "/components/furniture_img/furniture4.jpg",
       alt: "Luxury lounge"
     }
   ];
 
   const decorImages: ImageItem[] = [
     {
-      src: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=500&h=400",
+      src: "/components/decor_img/decor_img1.jpg",
       alt: "Decor setup 1"
     },
     {
-      src: "https://images.unsplash.com/photo-1519167758481-83f29d8ae8e0?auto=format&fit=crop&w=500&h=400",
+      src: "/components/decor_img/decor_img2.jpg",
       alt: "Decor setup 2"
     },
     {
-      src: "https://images.unsplash.com/photo-1478146896981-b80fe463b330?auto=format&fit=crop&w=500&h=400",
+      src: "/components/decor_img/decor_img3.jpg",
       alt: "Decor setup 3"
     },
     {
-      src: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=500&h=400",
+      src: "/components/decor_img/decor_img4.jpg",
       alt: "Decor setup 4"
     }
   ];
