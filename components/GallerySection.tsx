@@ -51,7 +51,7 @@ export default function GallerySection() {
   ];
 
   return (
-  <div className="py-20 bg-[#f4f6fa]">
+  <div className="py-20 bg-[#fffffff5]">
     {/* Furniture Gallery */}
     <section id="gallery" className="container mx-auto px-4 mb-16 bg-white/70 backdrop-blur-md rounded-xl shadow-lg p-8">
       <div className="text-center mb-8">

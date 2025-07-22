@@ -25,7 +25,7 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-20 bg-[#f4f6fa]">
+    <section id="services" className="py-20 bg-[#ffffff]">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-semibold text-[#2f2f3a]">Our Services</h2>
