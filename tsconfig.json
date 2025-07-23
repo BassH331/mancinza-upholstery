@@ -29,5 +29,11 @@
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": [
+    "vite.config.d.ts",
+    "vite.config.js",  // just in case
+    "node_modules",
+    "dist"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

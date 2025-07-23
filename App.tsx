@@ -12,7 +12,7 @@ import { User, Wrench, Image, Mail, Calendar } from 'lucide-react';
 
 export default function App() {
   const [currentSection, setCurrentSection] = useState<string>('about');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [, setIsMenuOpen] = useState(false);
   const sections = [
     { id: 'about', icon: <User className="w-4 h-4" /> },
     { id: 'services', icon: <Wrench className="w-4 h-4" /> },

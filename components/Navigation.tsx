@@ -7,7 +7,7 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
 
-  const [currentSection, setCurrentSection] = useState<string>('about');
+  const [, setCurrentSection] = useState<string>('about');
 
   useEffect(() => {
     const sectionIds = ['about', 'services', 'gallery', 'contact', 'booking'];

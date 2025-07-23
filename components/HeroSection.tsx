@@ -1,7 +1,6 @@
 'use client';
 
 import { ChevronDown } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 
 export default function HeroSection() {
   const scrollToServices = () => {
