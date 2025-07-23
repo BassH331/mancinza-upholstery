@@ -1,11 +1,36 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+
+  const [currentSection, setCurrentSection] = useState<string>('about');
+
+  useEffect(() => {
+    const sectionIds = ['about', 'services', 'gallery', 'contact', 'booking'];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setCurrentSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
 
   const toggleTheme = () => {
     setIsDark(!isDark);
@@ -29,7 +54,7 @@ export default function Navigation() {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <a 
-            href="#" 
+            href="#hero" 
             className="text-xl font-semibold text-foreground hover:text-primary transition-colors"
           >
             Mancinza Upholstery

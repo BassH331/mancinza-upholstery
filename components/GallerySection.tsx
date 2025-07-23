@@ -13,103 +13,92 @@ export default function GallerySection() {
   };
 
   const furnitureImages: ImageItem[] = [
-    {
-      src: "/components/furniture_img/furniture1.jpg",
-      alt: "Elegant dark sofa"
-    },
-    {
-      src: "/components/furniture_img/furniture2.jpg", 
-      alt: "Brown dining set"
-    },
-    {
-      src: "/components/furniture_img/furniture3.jpg",
-      alt: "Cozy armchair"
-    },
-    {
-      src: "/components/furniture_img/furniture4.jpg",
-      alt: "Luxury lounge"
-    }
+    { src: "/components/furniture_img/furniture1.jpg", alt: "Elegant dark sofa" },
+    { src: "/components/furniture_img/furniture2.jpg", alt: "Brown dining set" },
+    { src: "/components/furniture_img/furniture3.jpg", alt: "Cozy armchair" },
+    { src: "/components/furniture_img/furniture4.jpg", alt: "Luxury lounge" }
   ];
 
   const decorImages: ImageItem[] = [
-    {
-      src: "/components/decor_img/decor_img1.jpg",
-      alt: "Decor setup 1"
-    },
-    {
-      src: "/components/decor_img/decor_img2.jpg",
-      alt: "Decor setup 2"
-    },
-    {
-      src: "/components/decor_img/decor_img3.jpg",
-      alt: "Decor setup 3"
-    },
-    {
-      src: "/components/decor_img/decor_img4.jpg",
-      alt: "Decor setup 4"
-    }
+    { src: "/components/decor_img/decor_img1.jpg", alt: "Decor setup 1" },
+    { src: "/components/decor_img/decor_img2.jpg", alt: "Decor setup 2" },
+    { src: "/components/decor_img/decor_img3.jpg", alt: "Decor setup 3" },
+    { src: "/components/decor_img/decor_img4.jpg", alt: "Decor setup 4" }
   ];
 
   return (
-  <div className="py-20 bg-[#fffffff5]">
-    {/* Furniture Gallery */}
-    <section id="gallery" className="container mx-auto px-4 mb-16 bg-white/70 backdrop-blur-md rounded-xl shadow-lg p-8">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-semibold text-[#2f2f3a] mb-4">Furniture Gallery</h2>
-        <button
-          onClick={() => setShowFurnitureGallery(!showFurnitureGallery)}
-          className="inline-block px-6 py-2 text-sm font-medium text-white bg-[#7c6de4] rounded-full shadow-sm hover:bg-[#6252c8] transition"
-        >
-          {showFurnitureGallery ? 'Hide Gallery' : 'Show Gallery'}
-        </button>
-      </div>
-
-      {showFurnitureGallery && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {furnitureImages.map((image, index) => (
-            <div
-              key={index}
-              className="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+    <section id="gallery" className="py-20 bg-background">
+      <div className="container mx-auto px-4 max-w-6xl">
+        {/* Furniture Gallery */}
+        <div className="mb-16 bg-surface/80 backdrop-blur-md rounded-xl shadow-lg p-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 animate-fade-up">
+              Furniture Gallery
+            </h2>
+            <p className="text-muted-foreground mb-4 animate-fade-up animation-delay-100">
+              See examples of our <span className="text-primary font-medium">premium furniture restoration</span>.
+            </p>
+            <button
+              onClick={() => setShowFurnitureGallery(!showFurnitureGallery)}
+              className="px-6 py-2 text-sm font-medium text-white bg-green-900 rounded-full shadow-sm hover:bg-primary/80 transition animate-fade-up animation-delay-200"
             >
-              <ImageWithFallback
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
+              {showFurnitureGallery ? 'Hide Gallery' : 'Show Gallery'}
+            </button>
+          </div>
+
+          {showFurnitureGallery && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-up animation-delay-300">
+              {furnitureImages.map((image, index) => (
+                <div
+                  key={index}
+                  className="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 transform hover:scale-105"
+                >
+                  <ImageWithFallback
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-      )}
-    </section>
 
-    {/* Event Decor Gallery */}
-    <section id="decor-gallery" className="container mx-auto px-4 bg-white/70 backdrop-blur-md rounded-xl shadow-lg p-8">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-semibold text-[#2f2f3a] mb-4">Event Decor Gallery</h2>
-        <button
-          onClick={() => setShowDecorGallery(!showDecorGallery)}
-          className="inline-block px-6 py-2 text-sm font-medium text-white bg-[#7c6de4] rounded-full shadow-sm hover:bg-[#6252c8] transition"
-        >
-          {showDecorGallery ? 'Hide Gallery' : 'Show Gallery'}
-        </button>
-      </div>
-
-      {showDecorGallery && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {decorImages.map((image, index) => (
-            <div
-              key={index}
-              className="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+        {/* Decor Gallery */}
+        <div className="bg-surface/80 backdrop-blur-md rounded-xl shadow-lg p-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4 animate-fade-up">
+              Event Decor Gallery
+            </h2>
+            <p className="text-muted-foreground mb-4 animate-fade-up animation-delay-100">
+              Elegant <span className="text-primary font-medium">decor setups</span> for any occasion.
+            </p>
+            <button
+              onClick={() => setShowDecorGallery(!showDecorGallery)}
+              className="px-6 py-2 text-sm font-medium text-white bg-green-900 rounded-full shadow-sm hover:bg-primary/80 transition animate-fade-up animation-delay-200"
             >
-              <ImageWithFallback
-                src={image.src}
-                alt={image.alt}
-                className="w-full h-full object-cover"
-              />
+              {showDecorGallery ? 'Hide Gallery' : 'Show Gallery'}
+            </button>
+          </div>
+
+          {showDecorGallery && (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-up animation-delay-300">
+              {decorImages.map((image, index) => (
+                <div
+                  key={index}
+                  className="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 transform hover:scale-105"
+                >
+                  <ImageWithFallback
+                    src={image.src}
+                    alt={image.alt}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
-      )}
+      </div>
     </section>
-  </div>
-);}
+  );
+}

@@ -79,7 +79,7 @@ export default function ContactSection() {
   }, []);
 
   return (
-  <section className="relative py-20">
+  <section id="contact" className="relative py-20">
   {/* 🔷 Video Background */}
   <video
     autoPlay
@@ -93,121 +93,136 @@ export default function ContactSection() {
   </video>
 
   {/* 🔷 Black Overlay */}
-  <div className="absolute inset-0 bg-black/50 z-0"></div>
+<div className="absolute inset-0 bg-black/50 z-0 dark:bg-black/70"></div>
 
-  {/* 🔷 Fade Top */}
-  <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white to-transparent z-10"></div>
+{/* 🔷 Fade Top */}
+<div className="
+  absolute top-0 left-0 right-0 h-24 
+  bg-gradient-to-b from-white to-transparent z-10 
+  dark:from-black dark:to-transparent
+"></div>
 
-  {/* 🔷 Fade Bottom */}
-  <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10"></div>
+{/* 🔷 Fade Bottom */}
+<div className="
+  absolute bottom-0 left-0 right-0 h-24 
+  bg-gradient-to-t from-white to-transparent z-10 
+  dark:from-black dark:to-transparent
+"></div>
+
 
   {/* 🔷 Content */}
   <div
-    ref={formRef}
-    className={`relative z-20 max-w-xl mx-auto bg-white/90 p-8 rounded-lg shadow-md transition-opacity duration-1000 transform ${
-      visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-    }`}
-  >
-    <h2 className="text-3xl font-bold text-center mb-4">Let’s Talk</h2>
-
-    <p className="text-center text-muted-foreground mb-2">
-      Have a question about our <strong>goods or services</strong>?
-    </p>
-    <p className="text-center text-muted-foreground mb-6">
-      We’d love to help you with more information, prices, or custom options — send us a message today and we’ll get back to you shortly.
-    </p>
-
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <input
-        type="text"
-        name="name"
-        value={formData.name}
-        onChange={handleInputChange}
-        placeholder="Your Name"
-        required
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none"
-      />
-
-      <input
-        type="email"
-        name="email"
-        value={formData.email}
-        onChange={handleInputChange}
-        placeholder="Your Email"
-        required
-        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none"
-      />
-
-      <div className="relative">
-        <textarea
-          name="message"
-          value={formData.message}
-          onChange={handleInputChange}
-          maxLength={500}
-          placeholder="Your Message"
-          required
-          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none resize-none"
-          rows={4}
-        />
-        
-        <div className="absolute bottom-1 right-2 text-xs text-gray-500">
-          {charCount}/500
-        </div>
-      </div>
-
-      <button
-        type="submit"
-        disabled={status === 'loading'}
-        className={`w-full py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors ${
-          status === 'success'
-            ? 'bg-green-500 text-white'
-            : status === 'error'
-            ? 'bg-red-500 text-white'
-            : 'bg-primary text-black hover:bg-primary/90'
-        }`}
-      >
-        {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
-        {status === 'success' && <CheckCircle className="w-4 h-4" />}
-        {status === 'error' && <XCircle className="w-4 h-4" />}
-        {status === 'loading' && 'Sending...'}
-        {status === 'success' && 'Sent!'}
-        {status === 'error' && 'Failed'}
-        {status === 'idle' && (
-          <>
-            <Send className="w-4 h-4" /> Send Message
-          </>
-        )}
-      </button>
-    </form>
-
-<div
-  className="relative z-20 mt-16 max-w-xl mx-auto bg-white/90 p-6 rounded-lg shadow-md"
+  ref={formRef}
+  className={`relative z-20 max-w-xl mx-auto 
+    bg-surface p-8 rounded-lg shadow-md 
+    transition-opacity duration-1000 transform 
+    ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
+  `}
 >
-  <h2 className="text-2xl font-bold text-center mb-4">Frequently Asked Questions</h2>
 
-  <Accordion.Root type="single" collapsible className="space-y-3">
-    {faqs.map((faq, index) => (
-      <Accordion.Item
-        key={index}
-        value={`item-${index}`}
-        className="bg-white rounded-md shadow-sm border border-gray-200 overflow-hidden"
-      >
-        <Accordion.Header>
-          <Accordion.Trigger className="flex w-full justify-between items-center px-4 py-3 text-left font-medium text-gray-800 hover:bg-gray-50 transition-colors">
-            <span>{faq.question}</span>
-            <ChevronDown className="h-5 w-5 transition-transform duration-300 AccordionChevron" />
-          </Accordion.Trigger>
-        </Accordion.Header>
-        <Accordion.Content className="px-4 py-3 text-gray-700 bg-gray-50">
-          {faq.answer}
-        </Accordion.Content>
-      </Accordion.Item>
-    ))}
-  </Accordion.Root>
+  <h2 className="text-3xl font-bold text-center mb-4 text-white">Let’s Talk</h2>
+
+  <p className="text-center text-white mb-2">
+    Have a question about our <strong>goods or services</strong>?
+  </p>
+  <p className="text-center text-white mb-6">
+    We’d love to help you with more information, prices, or custom options — send us a message today and we’ll get back to you shortly.
+  </p>
+
+  <form onSubmit={handleSubmit} className="space-y-5">
+    <input
+      type="text"
+      name="name"
+      value={formData.name}
+      onChange={handleInputChange}
+      placeholder="Your Name"
+      required
+      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary outline-none bg-surface text-foreground"
+    />
+
+    <input
+      type="email"
+      name="email"
+      value={formData.email}
+      onChange={handleInputChange}
+      placeholder="Your Email"
+      required
+      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary outline-none bg-surface text-foreground"
+    />
+
+    <div className="relative">
+      <textarea
+        name="message"
+        value={formData.message}
+        onChange={handleInputChange}
+        maxLength={500}
+        placeholder="Your Message"
+        required
+        className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary outline-none resize-none bg-surface text-foreground"
+        rows={4}
+      />
+      <div className="absolute bottom-1 right-2 text-xs text-muted-foreground">
+        {charCount}/500
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      disabled={status === 'loading'}
+      className={`w-full py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors ${
+        status === 'success'
+          ? 'bg-green-500 text-white'
+          : status === 'error'
+          ? 'bg-red-500 text-white'
+          : 'bg-primary text-black dark:text-white hover:bg-primary/90'
+      }`}
+    >
+      {status === 'loading' && <Loader2 className="w-4 h-4 animate-spin" />}
+      {status === 'success' && <CheckCircle className="w-4 h-4" />}
+      {status === 'error' && <XCircle className="w-4 h-4" />}
+      {status === 'loading' && 'Sending...'}
+      {status === 'success' && 'Sent!'}
+      {status === 'error' && 'Failed'}
+      {status === 'idle' && (
+        <>
+          <Send className="w-4 h-4" /> Send Message
+        </>
+      )}
+    </button>
+  </form>
+
+  <div
+  className="
+    relative z-20 mt-16 max-w-xl mx-auto 
+    bg-background text-foreground 
+    p-6 rounded-lg shadow-md
+  "
+>
+
+    <h2 className="text-2xl font-bold text-center mb-4 text-foreground">Frequently Asked Questions</h2>
+
+    <Accordion.Root type="single" collapsible className="space-y-3">
+      {faqs.map((faq, index) => (
+        <Accordion.Item
+          key={index}
+          value={`item-${index}`}
+          className="bg-surface rounded-md shadow-sm border border-border overflow-hidden"
+        >
+          <Accordion.Header>
+            <Accordion.Trigger className="flex w-full justify-between items-center px-4 py-3 text-left font-medium text-foreground hover:bg-muted transition-colors">
+              <span>{faq.question}</span>
+              <ChevronDown className="h-5 w-5 transition-transform duration-300 AccordionChevron" />
+            </Accordion.Trigger>
+          </Accordion.Header>
+          <Accordion.Content className="px-4 py-3 text-muted-foreground bg-muted/40">
+            {faq.answer}
+          </Accordion.Content>
+        </Accordion.Item>
+      ))}
+    </Accordion.Root>
+  </div>
 </div>
 
-    
-  </div>
   
 </section>
 
