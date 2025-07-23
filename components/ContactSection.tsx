@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Send, Loader2, CheckCircle, XCircle } from 'lucide-react';
+import * as Accordion from '@radix-ui/react-accordion';
+import { ChevronDown } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function ContactSection() {
@@ -9,6 +11,24 @@ export default function ContactSection() {
   const [charCount, setCharCount] = useState(0);
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [visible, setVisible] = useState(false);
+
+  const faqs = [
+    {
+      question: 'How long does it take?',
+      answer:
+        'Depending on the size of the project, it usually takes between 3 to 7 days for most upholstery and decor jobs. We’ll give you a time estimate when you contact us.',
+    },
+    {
+      question: 'What materials do you use?',
+      answer:
+        'We use premium fabrics, leathers, and foams sourced from trusted suppliers. You can choose from a wide range of materials when we discuss your project.',
+    },
+    {
+      question: 'Do you deliver?',
+      answer:
+        'Yes! We offer delivery and pickup services for most areas. Please ask about delivery when you place your order so we can arrange it for you.',
+    },
+  ];
 
   const formRef = useRef<HTMLDivElement>(null);
 
@@ -129,6 +149,7 @@ export default function ContactSection() {
           className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary outline-none resize-none"
           rows={4}
         />
+        
         <div className="absolute bottom-1 right-2 text-xs text-gray-500">
           {charCount}/500
         </div>
@@ -158,7 +179,37 @@ export default function ContactSection() {
         )}
       </button>
     </form>
+
+<div
+  className="relative z-20 mt-16 max-w-xl mx-auto bg-white/90 p-6 rounded-lg shadow-md"
+>
+  <h2 className="text-2xl font-bold text-center mb-4">Frequently Asked Questions</h2>
+
+  <Accordion.Root type="single" collapsible className="space-y-3">
+    {faqs.map((faq, index) => (
+      <Accordion.Item
+        key={index}
+        value={`item-${index}`}
+        className="bg-white rounded-md shadow-sm border border-gray-200 overflow-hidden"
+      >
+        <Accordion.Header>
+          <Accordion.Trigger className="flex w-full justify-between items-center px-4 py-3 text-left font-medium text-gray-800 hover:bg-gray-50 transition-colors">
+            <span>{faq.question}</span>
+            <ChevronDown className="h-5 w-5 transition-transform duration-300 AccordionChevron" />
+          </Accordion.Trigger>
+        </Accordion.Header>
+        <Accordion.Content className="px-4 py-3 text-gray-700 bg-gray-50">
+          {faq.answer}
+        </Accordion.Content>
+      </Accordion.Item>
+    ))}
+  </Accordion.Root>
+</div>
+
+    
   </div>
+  
 </section>
+
 );
 }
