@@ -89,7 +89,7 @@ export default function ContactSection() {
     className="absolute inset-0 w-full h-full object-cover z-0"
   >
     <source
-      src="https://www.youtube.com/watch?v=1bLVd9yaLLw"
+      src="https://i.imgur.com/3vSzKRd.mp4"
       type="video/mp4"
     />
     Your browser does not support the video tag.
