@@ -1,5 +1,3 @@
-'use client';
-
 import { useEffect, useRef, useState } from 'react';
 import { Send, Loader2, CheckCircle, XCircle } from 'lucide-react';
 import * as Accordion from '@radix-ui/react-accordion';

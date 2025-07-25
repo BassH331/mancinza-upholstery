@@ -56,52 +56,69 @@ export default function BookingSection() {
     toast.loading('Sending booking request...');
 
     try {
-      const res = await fetch('http://localhost:5000/booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: bookingData.name,
-          email: bookingData.email,
-          message: `
-New booking request received:
+  const bookingPayload = {
+    name: bookingData.name,
+    email: bookingData.email,
+    message: `
+      New booking request received:
 
-Name: ${bookingData.name}
-Email: ${bookingData.email}
-Date: ${bookingData.date}
+      Name: ${bookingData.name}
+      Email: ${bookingData.email}
+      Date: ${bookingData.date}
 
-Furniture Items: ${bookingData.furnitureItems.join(', ') || 'None'}
-Decor Items: ${bookingData.decorItems.join(', ') || 'None'}
-Theme: ${bookingData.theme}
-Couch Type: ${bookingData.couchType}
-Guests: ${bookingData.guests}
-Chair Type: ${bookingData.chairType}
-Table Type: ${bookingData.tableType}
-Audience: ${bookingData.audience}
-          `.trim()
-        }),
-      });
+      Furniture Items: ${bookingData.furnitureItems.join(', ') || 'None'}
+      Decor Items: ${bookingData.decorItems.join(', ') || 'None'}
+      Theme: ${bookingData.theme}
+      Couch Type: ${bookingData.couchType}
+      Guests: ${bookingData.guests}
+      Chair Type: ${bookingData.chairType}
+      Table Type: ${bookingData.tableType}
+      Audience: ${bookingData.audience}
+    `.trim()
+  };
 
-      if (res.ok) {
-        toast.success("✅ Booking submitted successfully! We'll contact you to confirm details.");
-        setBookingData({
-          name: '',
-          email: '',
-          date: '',
-          furnitureItems: [],
-          decorItems: [],
-          theme: '',
-          couchType: '',
-          guests: '',
-          chairType: '',
-          tableType: '',
-          audience: ''
-        });
-      } else {
-        toast.error("❌ Failed to send booking. Please try again later.");
-      }
-    } catch (error) {
-      toast.error("❌ Error occurred while sending booking.");
-    }
+  console.log("📤 Sending booking to server:", bookingPayload);
+
+  const res = await fetch('http://localhost:5000/booking', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(bookingPayload),
+  });
+
+  const responseText = await res.text();
+  let responseJson;
+
+  try {
+    responseJson = JSON.parse(responseText);
+  } catch {
+    responseJson = { raw: responseText };
+  }
+
+  console.log("📥 Server response status:", res.status);
+  console.log("📥 Server response body:", responseJson);
+
+  if (res.ok) {
+    toast.success("✅ Booking submitted successfully! We'll contact you to confirm details.");
+    setBookingData({
+      name: '',
+      email: '',
+      date: '',
+      furnitureItems: [],
+      decorItems: [],
+      theme: '',
+      couchType: '',
+      guests: '',
+      chairType: '',
+      tableType: '',
+      audience: ''
+    });
+  } else {
+    toast.error("❌ Failed to send booking. Please try again later.");
+  }
+} catch (error) {
+  console.error("🔥 Error during booking request:", error);
+  toast.error("❌ Error occurred while sending booking.");
+}
   };
 
   return (
