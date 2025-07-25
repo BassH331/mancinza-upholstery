@@ -48,12 +48,12 @@ export default function GallerySection() {
     {
       title: "Sofa Restoration",
       description: "Fix sagging cushions, fabrics & frames", 
-      image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&h=300"
+      image: "https://i.postimg.cc/t4P7pdFk/decor-img3.jpg"
     },
     {
       title: "Decor for Events",
       description: "Elegant setups for any occasion",
-      image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=400&h=300"
+      image: "https://i.postimg.cc/ZKv5xPsm/decor-img4.jpg"
     }
   ];
 
