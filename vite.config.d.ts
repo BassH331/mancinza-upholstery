@@ -11,7 +11,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "."),
       "@/components": path.resolve(__dirname, "./components"),
       "@/styles": path.resolve(__dirname, "./styles"),
-      "@/lib": path.resolve(__dirname, "./lib"),  // <--- add this line
+      "@/lib": path.resolve(__dirname, "./lib"),  
     },
   },
   optimizeDeps: {

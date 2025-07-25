@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Calendar } from 'lucide-react';
 import { toast } from 'sonner';
-import supabase from '@/lib/supabaseClient'; // <-- Make sure to import your supabase client
+import supabase from '../lib/supabaseClient'; // <-- Make sure to import your supabase client
 
 export default function BookingSection() {
   const [bookingData, setBookingData] = useState({
