@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { Calendar } from 'lucide-react';
 import { toast } from 'sonner';
-import supabase from '../lib/supabaseClient'; // <-- Make sure to import your supabase client
 
 export default function BookingSection() {
   const [bookingData, setBookingData] = useState({
@@ -54,47 +53,57 @@ export default function BookingSection() {
     });
   };
 
-  // **One handleSubmit with async Supabase insert and form reset**
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    toast.loading('Sending booking request...');
 
-    const { data, error } = await supabase.from('orders').insert([
-      {
-        name: bookingData.name,
-        email: bookingData.email,
-        date: bookingData.date,
-        furnitureItems: bookingData.furnitureItems,
-        decorItems: bookingData.decorItems,
-        theme: bookingData.theme,
-        couchType: bookingData.couchType,
-        guests: bookingData.guests ? parseInt(bookingData.guests) : null,
-        chairType: bookingData.chairType,
-        tableType: bookingData.tableType,
-        audience: bookingData.audience
+    try {
+      const res = await fetch('http://localhost:5000', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: bookingData.name,
+          email: bookingData.email,
+          message: `
+New booking request received:
+
+Name: ${bookingData.name}
+Email: ${bookingData.email}
+Date: ${bookingData.date}
+
+Furniture Items: ${bookingData.furnitureItems.join(', ') || 'None'}
+Decor Items: ${bookingData.decorItems.join(', ') || 'None'}
+Theme: ${bookingData.theme}
+Couch Type: ${bookingData.couchType}
+Guests: ${bookingData.guests}
+Chair Type: ${bookingData.chairType}
+Table Type: ${bookingData.tableType}
+Audience: ${bookingData.audience}
+          `.trim()
+        }),
+      });
+
+      if (res.ok) {
+        toast.success("✅ Booking submitted successfully! We'll contact you to confirm details.");
+        setBookingData({
+          name: '',
+          email: '',
+          date: '',
+          furnitureItems: [],
+          decorItems: [],
+          theme: '',
+          couchType: '',
+          guests: '',
+          chairType: '',
+          tableType: '',
+          audience: ''
+        });
+      } else {
+        toast.error("❌ Failed to send booking. Please try again later.");
       }
-    ]);
-
-    if (error) {
-      toast.error("Failed to submit booking: " + error.message);
-      console.error(error);
-      return;
+    } catch (error) {
+      toast.error("❌ Error occurred while sending booking.");
     }
-
-    toast.success("Booking submitted successfully! We'll contact you to confirm details.");
-
-    setBookingData({
-      name: '',
-      email: '',
-      date: '',
-      furnitureItems: [],
-      decorItems: [],
-      theme: '',
-      couchType: '',
-      guests: '',
-      chairType: '',
-      tableType: '',
-      audience: ''
-    });
   };
 
   return (
@@ -151,7 +160,6 @@ export default function BookingSection() {
               </div>
             </div>
 
-            {/* Furniture Selection */}
             <div>
               <label className="block text-sm font-semibold mb-2">Furniture Items</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -169,7 +177,6 @@ export default function BookingSection() {
               </div>
             </div>
 
-            {/* Decor Selection */}
             <div>
               <label className="block text-sm font-semibold mb-2">Decor Items</label>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -187,7 +194,6 @@ export default function BookingSection() {
               </div>
             </div>
 
-            {/* Event Details */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm mb-2">Theme</label>
