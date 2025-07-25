@@ -1,5 +1,3 @@
-'use client';
-
 import { useState } from 'react';
 import { Calendar } from 'lucide-react';
 import { toast } from 'sonner';
@@ -58,7 +56,7 @@ export default function BookingSection() {
     toast.loading('Sending booking request...');
 
     try {
-      const res = await fetch('http://localhost:5000', {
+      const res = await fetch('http://localhost:5000/booking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
