@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Calendar, Package } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function BookingSection() {
@@ -9,8 +9,28 @@ export default function BookingSection() {
     name: '',
     email: '',
     date: '',
-    item: ''
+    furnitureItems: [] as string[],
+    decorItems: [] as string[],
+    theme: '',
+    couchType: '',
+    guests: '',
+    chairType: '',
+    tableType: '',
+    audience: ''
   });
+
+  const furnitureOptions = [
+    "Sofa Set",
+    "Dining Table",
+    "Armchair",
+    "Coffee Table",
+    "Bar Stools"
+  ];
+
+  const decorOptions = [
+    "Event Decor Package",
+    "Table Decor"
+  ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -20,21 +40,36 @@ export default function BookingSection() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Mock booking submission
-    toast.success('Booking submitted successfully! We\'ll contact you to confirm details.');
-    setBookingData({ name: '', email: '', date: '', item: '' });
+  const handleCheckboxChange = (
+    category: 'furnitureItems' | 'decorItems',
+    value: string
+  ) => {
+    setBookingData(prev => {
+      const isSelected = prev[category].includes(value);
+      const updated = isSelected
+        ? prev[category].filter(item => item !== value)
+        : [...prev[category], value];
+      return { ...prev, [category]: updated };
+    });
   };
 
-  const rentalItems = [
-    "Sofa Set",
-    "Dining Table",
-    "Event Decor Package",
-    "Armchair",
-    "Coffee Table",
-    "Bar Stools"
-  ];
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.success("Booking submitted successfully! We'll contact you to confirm details.");
+    setBookingData({
+      name: '',
+      email: '',
+      date: '',
+      furnitureItems: [],
+      decorItems: [],
+      theme: '',
+      couchType: '',
+      guests: '',
+      chairType: '',
+      tableType: '',
+      audience: ''
+    });
+  };
 
   return (
     <section id="booking" className="py-20 bg-background">
@@ -42,7 +77,7 @@ export default function BookingSection() {
         <div className="text-center mb-12">
           <h2 className="mb-4">Book a Rental</h2>
           <p className="text-muted-foreground">
-            Reserve your furniture or decor items for your next event or home staging.
+            Choose from our wide range of furniture and decor options for your perfect event.
           </p>
         </div>
 
@@ -57,11 +92,10 @@ export default function BookingSection() {
                   value={bookingData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-input-background"
+                  className="w-full px-4 py-3 border border-border rounded-lg bg-input-background"
                   placeholder="Enter your full name"
                 />
               </div>
-              
               <div>
                 <label className="block text-sm mb-2">Email</label>
                 <input
@@ -70,12 +104,12 @@ export default function BookingSection() {
                   value={bookingData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-input-background"
+                  className="w-full px-4 py-3 border border-border rounded-lg bg-input-background"
                   placeholder="Enter your email"
                 />
               </div>
             </div>
-            
+
             <div>
               <label className="block text-sm mb-2">Rental Date</label>
               <div className="relative">
@@ -86,30 +120,124 @@ export default function BookingSection() {
                   value={bookingData.date}
                   onChange={handleInputChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-input-background"
+                  className="w-full pl-10 pr-4 py-3 border border-border rounded-lg bg-input-background"
                 />
               </div>
             </div>
-            
+
+            {/* Furniture Selection */}
             <div>
-              <label className="block text-sm mb-2">Select Item</label>
-              <div className="relative">
-                <Package className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <select
-                  name="item"
-                  value={bookingData.item}
+              <label className="block text-sm font-semibold mb-2">Furniture Items</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {furnitureOptions.map(item => (
+                  <label key={item} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={bookingData.furnitureItems.includes(item)}
+                      onChange={() => handleCheckboxChange('furnitureItems', item)}
+                      className="form-checkbox text-primary"
+                    />
+                    {item}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Decor Selection */}
+            <div>
+              <label className="block text-sm font-semibold mb-2">Decor Items</label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {decorOptions.map(item => (
+                  <label key={item} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      checked={bookingData.decorItems.includes(item)}
+                      onChange={() => handleCheckboxChange('decorItems', item)}
+                      className="form-checkbox text-primary"
+                    />
+                    {item}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* Event Details */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm mb-2">Theme</label>
+                <input
+                  type="text"
+                  name="theme"
+                  value={bookingData.theme}
                   onChange={handleInputChange}
-                  required
-                  className="w-full pl-10 pr-4 py-3 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-input-background appearance-none"
+                  className="w-full px-4 py-3 border border-border rounded-lg bg-input-background"
+                  placeholder="E.g. Modern, Floral, Luxury"
+                />
+              </div>
+              <div>
+                <label className="block text-sm mb-2">Couch Type & Color</label>
+                <input
+                  type="text"
+                  name="couchType"
+                  value={bookingData.couchType}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-border rounded-lg bg-input-background"
+                  placeholder="E.g. L-shape, Cream"
+                />
+              </div>
+              <div>
+                <label className="block text-sm mb-2">Decor for How Many People?</label>
+                <input
+                  type="number"
+                  name="guests"
+                  value={bookingData.guests}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-border rounded-lg bg-input-background"
+                  placeholder="E.g. 30"
+                />
+              </div>
+              <div>
+                <label className="block text-sm mb-2">Type of Chairs</label>
+                <select
+                  name="chairType"
+                  value={bookingData.chairType}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-border rounded-lg bg-input-background"
                 >
-                  <option value="">Select an item</option>
-                  {rentalItems.map((item, index) => (
-                    <option key={index} value={item}>{item}</option>
-                  ))}
+                  <option value="">Choose</option>
+                  <option value="Black Plastic">Black Plastic</option>
+                  <option value="Tiffany Chairs">Tiffany Chairs</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm mb-2">Type of Tables</label>
+                <select
+                  name="tableType"
+                  value={bookingData.tableType}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-border rounded-lg bg-input-background"
+                >
+                  <option value="">Choose</option>
+                  <option value="Plastic">Plastic</option>
+                  <option value="Glass">Glass</option>
+                  <option value="Wooden">Wooden</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm mb-2">Event For</label>
+                <select
+                  name="audience"
+                  value={bookingData.audience}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 border border-border rounded-lg bg-input-background"
+                >
+                  <option value="">Choose</option>
+                  <option value="Adults">Adults</option>
+                  <option value="Kids">Kids</option>
                 </select>
               </div>
             </div>
-            
+
             <button
               type="submit"
               className="w-full bg-primary text-primary-foreground py-3 px-6 rounded-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105"
