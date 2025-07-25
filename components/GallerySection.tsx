@@ -13,17 +13,48 @@ export default function GallerySection() {
   };
 
   const furnitureImages: ImageItem[] = [
-    { src: "/components/furniture_img/furniture1.jpg", alt: "Elegant dark sofa" },
-    { src: "/components/furniture_img/furniture2.jpg", alt: "Brown dining set" },
-    { src: "/components/furniture_img/furniture3.jpg", alt: "Cozy armchair" },
-    { src: "/components/furniture_img/furniture4.jpg", alt: "Luxury lounge" }
-  ];
+  {
+    src: "https://i.imgur.com/6L0COIZ.jpeg",
+    alt: "Elegant dark sofa"
+  },
+  {
+    src: "https://i.imgur.com/LD7ndbL.jpeg",
+    alt: "Brown dining set"
+  },
+  {
+    src: "https://i.imgur.com/C9SEtzi.jpeg",
+    alt: "Cozy armchair"
+  },
+  {
+    src: "https://i.imgur.com/Tb7JiKK.jpeg",
+    alt: "Luxury lounge"
+  }
+];
 
-  const decorImages: ImageItem[] = [
-    { src: "/components/decor_img/decor_img1.jpg", alt: "Decor setup 1" },
-    { src: "/components/decor_img/decor_img2.jpg", alt: "Decor setup 2" },
-    { src: "/components/decor_img/decor_img3.jpg", alt: "Decor setup 3" },
-    { src: "/components/decor_img/decor_img4.jpg", alt: "Decor setup 4" }
+
+
+
+   const decorImages = [
+    {
+      title: "Upholstery Materials",
+      description: "Durable, stylish fabrics & leathers",
+      image: "https://i.imgur.com/HtqUwJ6.jpeg"
+    },
+    {
+      title: "Car Seat Repairs",
+      description: "Restore your car's interior to like-new",
+      image: "https://images.pexels.com/photos/244818/pexels-photo-244818.jpeg"
+    },
+    {
+      title: "Sofa Restoration",
+      description: "Fix sagging cushions, fabrics & frames", 
+      image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=400&h=300"
+    },
+    {
+      title: "Decor for Events",
+      description: "Elegant setups for any occasion",
+      image: "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=400&h=300"
+    }
   ];
 
   return (
@@ -89,8 +120,8 @@ export default function GallerySection() {
                   className="aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-transform duration-300 transform hover:scale-105"
                 >
                   <ImageWithFallback
-                    src={image.src}
-                    alt={image.alt}
+                    src={image.image}
+                    alt={image.title}
                     className="w-full h-full object-cover"
                   />
                 </div>

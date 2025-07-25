@@ -88,9 +88,13 @@ export default function ContactSection() {
     playsInline
     className="absolute inset-0 w-full h-full object-cover z-0"
   >
-    <source src="/vid/back_vid2.mp4" type="video/mp4" />
+    <source
+      src="https://www.youtube.com/watch?v=1bLVd9yaLLw"
+      type="video/mp4"
+    />
     Your browser does not support the video tag.
   </video>
+
 
   {/* 🔷 Black Overlay */}
 <div className="absolute inset-0 bg-black/50 z-0 dark:bg-black/70"></div>
