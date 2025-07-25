@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Calendar } from 'lucide-react';
 import { toast } from 'sonner';
+import supabase from '@/lib/supabaseClient'; // <-- Make sure to import your supabase client
 
 export default function BookingSection() {
   const [bookingData, setBookingData] = useState({
@@ -53,9 +54,34 @@ export default function BookingSection() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // **One handleSubmit with async Supabase insert and form reset**
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    const { data, error } = await supabase.from('orders').insert([
+      {
+        name: bookingData.name,
+        email: bookingData.email,
+        date: bookingData.date,
+        furnitureItems: bookingData.furnitureItems,
+        decorItems: bookingData.decorItems,
+        theme: bookingData.theme,
+        couchType: bookingData.couchType,
+        guests: bookingData.guests ? parseInt(bookingData.guests) : null,
+        chairType: bookingData.chairType,
+        tableType: bookingData.tableType,
+        audience: bookingData.audience
+      }
+    ]);
+
+    if (error) {
+      toast.error("Failed to submit booking: " + error.message);
+      console.error(error);
+      return;
+    }
+
     toast.success("Booking submitted successfully! We'll contact you to confirm details.");
+
     setBookingData({
       name: '',
       email: '',
