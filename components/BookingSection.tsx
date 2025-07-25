@@ -79,7 +79,7 @@ export default function BookingSection() {
 
   console.log("📤 Sending booking to server:", bookingPayload);
 
-  const res = await fetch('http://localhost:5000/booking', {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/booking`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(bookingPayload),

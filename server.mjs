@@ -1,12 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import { Resend } from 'resend';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+
 
 // ✅ Replace this with your real Resend API Key
-const resend = new Resend('re_GH9zk6LH_7gsTXQv5xUBPRU8f2PQmgK2t');
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use(express.json());
 app.use(cors());
