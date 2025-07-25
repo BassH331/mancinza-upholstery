@@ -43,7 +43,7 @@ export default function GallerySection() {
     {
       title: "Car Seat Repairs",
       description: "Restore your car's interior to like-new",
-      image: "https://images.pexels.com/photos/244818/pexels-photo-244818.jpeg"
+      image: "https://i.postimg.cc/g0XsYTN5/decor-img2.jpg"
     },
     {
       title: "Sofa Restoration",
