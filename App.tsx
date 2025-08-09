@@ -9,26 +9,7 @@ import BookingSection from "./components/BookingSection";
 import { Toaster } from "./components/ui/sonner";
 import { User, Wrench, Image, Mail, Calendar } from "lucide-react";
 
-/** Lightweight hash router */
-function useHashRoute() {
-  const [hash, setHash] = useState<string>(() => window.location.hash || "");
-
-  useEffect(() => {
-    const h = () => setHash(window.location.hash || "");
-    window.addEventListener("hashchange", h);
-    return () => window.removeEventListener("hashchange", h);
-  }, []);
-
-  // Support both `#approve=...` and `#/approve?payload=...`
-  const isApproval =
-    /^#approve=/.test(hash) ||
-    (hash.startsWith("#/approve") && new URLSearchParams(hash.split("?")[1]).has("payload"));
-
-  return { isApproval };
-}
-
 export default function App() {
-  const { isApproval } = useHashRoute();
 
   // --- Normal one-page site below ---
   const [currentSection, setCurrentSection] = useState<string>("about");
