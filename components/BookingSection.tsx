@@ -53,7 +53,7 @@ const ZAR = (n: number) =>
 const brand = {
   name: "Mancinza Upholstery",
   email: "sales@mancinzaupholstery.site",
-  phone: "+27 00 000 0000",
+  phone: "+27 79 733 4244",
   address: "Mbombela, Mpumalanga, South Africa",
   logoUrl: "/Logo(light).png", // ensure this file exists in /public
 };

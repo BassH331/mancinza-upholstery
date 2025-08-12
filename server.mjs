@@ -46,8 +46,8 @@ app.post('/booking', async (req, res) => {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'onboarding@resend.dev',              // use your verified sender
-      to: 'lbass1613@gmail.com',                  // your inbox
+      from: 'mancinza@enquiry.dev',              // use your verified sender
+      to: 'mancinza44@gmail.com',                  // your inbox
       subject: `✅ Order Approved — ${name}`,
       html: `
         <h2>Order Approved</h2>
