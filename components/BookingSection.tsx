@@ -223,7 +223,7 @@ export default function BookingEstimator() {
 
   const whatsappShare = () => {
     const text = buildWhatsAppText();
-    const url = `https://wa.me/27679972425?text=${encodeURIComponent(text)}`;
+    const url = `https://wa.me/27797334244?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank");
   };
 
